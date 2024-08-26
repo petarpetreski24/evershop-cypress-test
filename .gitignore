@@ -13,7 +13,6 @@ npm-debug.log
 .DS_Store
 .log
 coverage
-cypress
 /config
 .prettierignore
 .prettierrc
