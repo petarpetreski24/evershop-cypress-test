@@ -4,9 +4,7 @@ describe('Evershop Website Tests', () => {
       cy.visit('/');
     });
 
-    Cypress.on('uncaught:exception', (err, runnable) => {
-        return false;
-      });
+    Cypress.on('uncaught:exception', (err, runnable) => false);
 
     it('should verify navigation bar links', () => {
       cy.get('.nav-link[href="/kids"]').should('contain.text', 'Kids').click();

@@ -84,7 +84,7 @@ context('Assertions', () => {
           expect(paragraphs, 'has expected text in each paragraph').to.deep.eq([
             'Some text from first p',
             'More text from second p',
-            'And even more text from third p',
+            'And even more text from third p'
           ])
         })
     })
@@ -96,7 +96,7 @@ context('Assertions', () => {
         .should(($div) => {
           expect($div).to.have.length(1)
 
-          const className = $div[0].className
+          const {className} = $div[0]
 
           expect(className).to.match(/heading-/)
         })
@@ -116,7 +116,7 @@ context('Assertions', () => {
             throw new Error('Did not find 1 element')
           }
 
-          const className = $div[0].className
+          const {className} = $div[0]
 
           if (!className.match(/heading-/)) {
             throw new Error(`Could not find class "heading-" in ${className}`)
@@ -158,7 +158,7 @@ context('Assertions', () => {
     it('assert - assert shape of an object', () => {
       const person = {
         name: 'Joe',
-        age: 20,
+        age: 20
       }
 
       assert.isObject(person, 'value is object')

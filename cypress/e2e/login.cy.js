@@ -81,7 +81,7 @@ describe('Login Page - Password Field', () => {
     cy.get('input[type="checkbox"]').check();
     cy.get('input[name="password"]').should('have.attr', 'type', 'text');
   });
-  //This test will fail because it doesn't have that functionality
+  // This test will fail because it doesn't have that functionality
 });
 
 describe('Login Page - Login Button', () => {
@@ -92,7 +92,7 @@ describe('Login Page - Login Button', () => {
   it('should be disabled when fields are empty', () => {
     cy.get('button[type="submit"]').should('be.disabled');
   });
-  //This test will fail because it doesn't have that functionality
+  // This test will fail because it doesn't have that functionality
 
   it('should be enabled when all fields are valid', () => {
     cy.get('input[name="email"]').type('demo@evershop.io');
