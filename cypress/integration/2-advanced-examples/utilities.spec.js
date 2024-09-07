@@ -9,7 +9,7 @@ context('Utilities', () => {
     // https://on.cypress.io/_
     cy.request('https://jsonplaceholder.cypress.io/users')
       .then((response) => {
-        let ids = Cypress._.chain(response.body).map('id').take(3).value()
+        const ids = Cypress._.chain(response.body).map('id').take(3).value()
 
         expect(ids).to.deep.eq([1, 2, 3])
       })
@@ -17,7 +17,7 @@ context('Utilities', () => {
 
   it('Cypress.$ - call a jQuery method', () => {
     // https://on.cypress.io/$
-    let $li = Cypress.$('.utility-jquery li:first')
+    const $li = Cypress.$('.utility-jquery li:first')
 
     cy.wrap($li)
       .should('not.have.class', 'active')
@@ -27,13 +27,13 @@ context('Utilities', () => {
 
   it('Cypress.Blob - blob utilities and base64 string conversion', () => {
     // https://on.cypress.io/blob
-    cy.get('.utility-blob').then(($div) => {
+    cy.get('.utility-blob').then(($div) => 
       // https://github.com/nolanlawson/blob-util#imgSrcToDataURL
       // get the dataUrl string for the javascript-logo
-      return Cypress.Blob.imgSrcToDataURL('https://example.cypress.io/assets/img/javascript-logo.png', undefined, 'anonymous')
+       Cypress.Blob.imgSrcToDataURL('https://example.cypress.io/assets/img/javascript-logo.png', undefined, 'anonymous')
       .then((dataUrl) => {
         // create an <img> element and set its src to the dataUrl
-        let img = Cypress.$('<img />', { src: dataUrl })
+        const img = Cypress.$('<img />', { src: dataUrl })
 
         // need to explicitly return cy here since we are initially returning
         // the Cypress.Blob.imgSrcToDataURL promise to our test
@@ -43,26 +43,26 @@ context('Utilities', () => {
         cy.get('.utility-blob img').click()
           .should('have.attr', 'src', dataUrl)
       })
-    })
+    )
   })
 
   it('Cypress.minimatch - test out glob patterns against strings', () => {
     // https://on.cypress.io/minimatch
     let matching = Cypress.minimatch('/users/1/comments', '/users/*/comments', {
-      matchBase: true,
+      matchBase: true
     })
 
     expect(matching, 'matching wildcard').to.be.true
 
     matching = Cypress.minimatch('/users/1/comments/2', '/users/*/comments', {
-      matchBase: true,
+      matchBase: true
     })
 
     expect(matching, 'comments').to.be.false
 
     // ** matches against all downstream path segments
     matching = Cypress.minimatch('/foo/bar/baz/123/quux?a=b&c=2', '/foo/**', {
-      matchBase: true,
+      matchBase: true
     })
 
     expect(matching, 'comments').to.be.true
@@ -70,7 +70,7 @@ context('Utilities', () => {
     // whereas * matches only the next path segment
 
     matching = Cypress.minimatch('/foo/bar/baz/123/quux?a=b&c=2', '/foo/*', {
-      matchBase: false,
+      matchBase: false
     })
 
     expect(matching, 'comments').to.be.false
@@ -96,13 +96,13 @@ context('Utilities', () => {
       })
     }
 
-    cy.then(() => {
+    cy.then(() => 
       // return a promise to cy.then() that
       // is awaited until it resolves
-      return waitOneSecond().then((str) => {
+       waitOneSecond().then((str) => {
         expect(str).to.eq('foo')
         expect(waited).to.be.true
       })
-    })
+    )
   })
 })
